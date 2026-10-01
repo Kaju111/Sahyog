@@ -34,7 +34,7 @@ function SignIn() {
     if (pw.length < 8) return setError("Password must be at least 8 characters");
     setError(""); setLoading(true);
     await new Promise((r) => setTimeout(r, 800)); // mock auth — replace with real provider
-    signIn({ name: name || email.split("@")[0], email });
+    signIn({ name: name || email.split("@")[0] || "Friend", email });
     setLoading(false);
     toast.success(mode === "in" ? "Welcome back!" : "Account created!");
     navigate({ to: "/" });

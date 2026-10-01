@@ -21,7 +21,7 @@ export function DonateModal({ f, onClose }: { f: Fundraiser | null; onClose: () 
   const value = custom ? Number(custom) : amount;
 
   const donate = async () => {
-    if (!value || value < 1) return toast.error("Please enter an amount of at least $1");
+    if (!value || value < 1) { toast.error("Please enter an amount of at least $1"); return; }
     setLoading(true);
     // PAYMENT PLACEHOLDER: create a Stripe/Razorpay checkout session here.
     await new Promise((r) => setTimeout(r, 1200));

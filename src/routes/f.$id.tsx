@@ -77,7 +77,7 @@ function Detail() {
           {DONORS.map((d, i) => (
             <li key={i} className="flex items-center gap-3 text-sm">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft font-bold text-primary-deep">{d[0]}</span>
-              <span><span className="font-semibold">{d}</span><br /><span className="text-muted-foreground">{money([50, 20, 100, 250, 15, 40][i])}</span></span>
+              <span><span className="font-semibold">{d}</span><br /><span className="text-muted-foreground">{money([50, 20, 100, 250, 15, 40][i] ?? 0)}</span></span>
             </li>
           ))}
         </ul>
