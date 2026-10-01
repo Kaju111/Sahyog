@@ -120,10 +120,10 @@ function Home() {
             ))}
           </div>
           <div className="mt-8 grid items-center gap-8 overflow-hidden rounded-3xl bg-card shadow-soft md:grid-cols-2" role="tabpanel">
-            <img src={TOPICS[topic].image} alt={TOPICS[topic].name} loading="lazy" className="h-72 w-full object-cover md:h-full" />
+            <img src={TOPICS[topic]!.image} alt={TOPICS[topic]!.name} loading="lazy" className="h-72 w-full object-cover md:h-full" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold">{TOPICS[topic].name} fundraising</h3>
-              <p className="mt-3 text-muted-foreground">{TOPICS[topic].desc}</p>
+              <h3 className="text-2xl font-bold">{TOPICS[topic]!.name} fundraising</h3>
+              <p className="mt-3 text-muted-foreground">{TOPICS[topic]!.desc}</p>
               <Link to="/how-it-works" className="mt-6 inline-flex items-center gap-1 font-semibold text-primary">Read the guide <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
