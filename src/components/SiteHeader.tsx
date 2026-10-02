@@ -68,7 +68,7 @@ export function SiteHeader() {
                 {profile && (
                   <ul className="absolute right-0 mt-2 w-56 rounded-2xl border bg-popover p-2 shadow-lift">
                     {PROFILE.map((p) => (
-                      <li key={p}><a href="#" className="block rounded-lg px-3 py-2 hover:bg-muted">{p}</a></li>
+                      <li key={p}><Link to="/my-fundraisers" onClick={() => setProfile(false)} className="block rounded-lg px-3 py-2 hover:bg-muted">{p}</Link></li>
                     ))}
                     <li className="mt-1 border-t pt-1">
                       <button onClick={() => { signOut(); setProfile(false); }} className="w-full rounded-lg px-3 py-2 text-left hover:bg-muted">Sign out</button>

@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
-import { CATEGORIES, FUNDRAISERS, type Fundraiser } from "@/lib/data";
+import { CATEGORIES, type Fundraiser } from "@/lib/data";
+import { useQuery } from "@tanstack/react-query";
+import { allFundraisersQuery } from "@/lib/fundraisers";
 import { FundraiserCard } from "@/components/FundraiserCard";
 import { DonateModal } from "@/components/DonateModal";
 
@@ -22,7 +24,8 @@ function Discover() {
   const { q = "", category } = Route.useSearch();
   const [donate, setDonate] = useState<Fundraiser | null>(null);
   const term = q.toLowerCase();
-  const list = FUNDRAISERS.filter((f) =>
+  const { data: all } = useQuery(allFundraisersQuery);
+  const list = all.filter((f) =>
     (!category || f.category === category) &&
     (!term || `${f.title} ${f.location} ${f.category}`.toLowerCase().includes(term)));
 

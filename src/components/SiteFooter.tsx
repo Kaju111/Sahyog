@@ -21,12 +21,12 @@ export function SiteFooter() {
           <p className="mt-4 text-sm text-muted-foreground">Helping people lift each other up, one fundraiser at a time.</p>
           <div className="mt-5 flex gap-2">
             {[
-              { l: "Facebook", i: <Facebook className="h-5 w-5" /> },
-              { l: "YouTube", i: <Youtube className="h-5 w-5" /> },
-              { l: "X", i: <XIcon /> },
-              { l: "Instagram", i: <Instagram className="h-5 w-5" /> },
+              { l: "Facebook", h: "https://facebook.com", i: <Facebook className="h-5 w-5" /> },
+              { l: "YouTube", h: "https://youtube.com", i: <Youtube className="h-5 w-5" /> },
+              { l: "X", h: "https://x.com", i: <XIcon /> },
+              { l: "Instagram", h: "https://instagram.com", i: <Instagram className="h-5 w-5" /> },
             ].map((s) => (
-              <a key={s.l} href="#" aria-label={s.l} className="grid h-10 w-10 place-items-center rounded-full border bg-background hover:border-primary hover:text-primary">{s.i}</a>
+              <a key={s.l} href={s.h} target="_blank" rel="noreferrer" aria-label={s.l} className="grid h-10 w-10 place-items-center rounded-full border bg-background hover:border-primary hover:text-primary">{s.i}</a>
             ))}
           </div>
         </div>
@@ -44,9 +44,12 @@ export function SiteFooter() {
       <div className="border-t">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-6 text-sm text-muted-foreground sm:px-6">
           <span>© {new Date().getFullYear()} Liftly</span>
-          {["Terms", "Privacy Notice", "Legal", "Cookie Policy"].map((l) => <a key={l} href="#" className="hover:text-foreground">{l}</a>)}
+          <Link to="/terms" className="hover:text-foreground">Terms</Link>
+          <Link to="/privacy" className="hover:text-foreground">Privacy Notice</Link>
+          <Link to="/legal" className="hover:text-foreground">Legal</Link>
+          <Link to="/cookies" className="hover:text-foreground">Cookie Policy</Link>
           <button onClick={() => { localStorage.removeItem("liftly-cookies"); location.reload(); }} className="hover:text-foreground">Manage cookie preferences</button>
-          <a href="#" className="hover:text-foreground">Your privacy choices</a>
+          <Link to="/privacy" className="hover:text-foreground">Your privacy choices</Link>
         </div>
       </div>
     </footer>
