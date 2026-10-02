@@ -1,4 +1,7 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Check, Loader2, Upload } from "lucide-react";
@@ -16,8 +19,8 @@ export const Route = createFileRoute("/start")({
   component: Start,
 });
 
-const STEPS = ["Basics", "Story", "Photo", "Bank details"];
-type Form = { title: string; goal: string; category: string; story: string; photo: string; holder: string; account: string };
+const STEPS = ["Basics", "Story", "Photo", "Details"];
+type Form = { title: string; goal: string; category: string; story: string; photo: string; holder: string; account: string; file?: File };
 
 function Start() {
   const [step, setStep] = useState(0);
@@ -25,6 +28,8 @@ function Start() {
   const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
   const [form, setForm] = useState<Form>({ title: "", goal: "", category: "", story: "", photo: "", holder: "", account: "" });
   const navigate = useNavigate();
+  const qc = useQueryClient();
+  const { user, ready } = useAuth();
   const set = (k: keyof Form, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   // Per-step validation
@@ -37,8 +42,8 @@ function Start() {
     }
     if (step === 1 && form.story.trim().length < 50) e.story = "Tell us a bit more (at least 50 characters)";
     if (step === 3) {
-      if (!form.holder.trim()) e.holder = "Account holder name is required";
-      if (!/^\d{8,18}$/.test(form.account)) e.account = "Enter 8–18 digits";
+      if (!form.holder.trim()) e.holder = "Organizer name is required";
+      if (!form.account.trim()) e.account = "Location is required";
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -48,13 +53,36 @@ function Start() {
     if (!validate()) return;
     if (step < STEPS.length - 1) return setStep(step + 1);
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200)); // replace with API call
-    setLoading(false);
-    toast.success("Your fundraiser is ready! (demo)");
-    navigate({ to: "/" });
+    try {
+      let image_url: string | null = null;
+      if (form.file) {
+        const path = `${user!.id}/${crypto.randomUUID()}-${form.file.name.replace(/[^\w.]/g, "")}`;
+        const up = await supabase.storage.from("covers").upload(path, form.file);
+        if (up.error) throw up.error;
+        const signed = await supabase.storage.from("covers").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+        image_url = signed.data?.signedUrl ?? null;
+      }
+      const { data, error } = await supabase.from("fundraisers").insert({
+        owner_id: user!.id, title: form.title.trim(), goal: Math.round(Number(form.goal)), category: form.category,
+        story: form.story.trim(), image_url, organizer: form.holder.trim(), location: form.account.trim(),
+      }).select("id").single();
+      if (error) throw error;
+      qc.invalidateQueries();
+      toast.success("Your fundraiser is live!");
+      navigate({ to: "/f/$id", params: { id: data.id } });
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Could not publish");
+    } finally { setLoading(false); }
   };
 
   const err = (k: keyof Form) => errors[k] && <p className="mt-1 text-sm text-destructive">{errors[k]}</p>;
+
+  if (ready && !user) return (
+    <div className="mx-auto max-w-md px-4 py-20 text-center">
+      <h1 className="text-3xl font-extrabold">Sign in to start a fundraiser</h1>
+      <Link to="/signin" className="btn btn-primary mt-6">Sign in or sign up</Link>
+    </div>
+  );
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
@@ -94,15 +122,14 @@ function Start() {
             <p className="font-medium">Add a cover photo</p>
             <label className="mt-3 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-10 text-muted-foreground hover:border-primary">
               {form.photo ? <img src={form.photo} alt="Cover preview" className="max-h-60 rounded-xl" /> : <><Upload className="h-8 w-8" />Click to upload (optional)</>}
-              <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const file = e.target.files?.[0]; if (file) set("photo", URL.createObjectURL(file)); }} />
+              <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const file = e.target.files?.[0]; if (file) { if (file.size > 5e6) return toast.error("Max 5MB"); setForm((f) => ({ ...f, photo: URL.createObjectURL(file), file })); } }} />
             </label>
           </div>
         )}
         {step === 3 && (
           <div className="space-y-5">
-            <label className="block font-medium">Account holder name<input className="field mt-1" value={form.holder} onChange={(e) => set("holder", e.target.value)} />{err("holder")}</label>
-            <label className="block font-medium">Account number<input inputMode="numeric" className="field mt-1" value={form.account} onChange={(e) => set("account", e.target.value.replace(/\D/g, ""))} />{err("account")}</label>
-            <p className="text-xs text-muted-foreground">Demo only — never enter real bank details here.</p>
+            <label className="block font-medium">Organizer name<input className="field mt-1" value={form.holder} onChange={(e) => set("holder", e.target.value)} placeholder="Your name or organisation" />{err("holder")}</label>
+            <label className="block font-medium">Location<input className="field mt-1" value={form.account} onChange={(e) => set("account", e.target.value)} placeholder="City, Country" />{err("account")}</label>
           </div>
         )}
 
