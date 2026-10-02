@@ -122,7 +122,7 @@ function Start() {
             <p className="font-medium">Add a cover photo</p>
             <label className="mt-3 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-10 text-muted-foreground hover:border-primary">
               {form.photo ? <img src={form.photo} alt="Cover preview" className="max-h-60 rounded-xl" /> : <><Upload className="h-8 w-8" />Click to upload (optional)</>}
-              <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const file = e.target.files?.[0]; if (file) { if (file.size > 5e6) return toast.error("Max 5MB"); setForm((f) => ({ ...f, photo: URL.createObjectURL(file), file })); } }} />
+              <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const file = e.target.files?.[0]; if (file) { if (file.size > 5e6) { toast.error("Max 5MB"); return; } setForm((f) => ({ ...f, photo: URL.createObjectURL(file), file })); } }} />
             </label>
           </div>
         )}
