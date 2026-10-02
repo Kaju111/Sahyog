@@ -5,7 +5,7 @@ import { Logo } from "./Logo";
 import { MENUS } from "@/lib/data";
 import { useAuth } from "@/lib/auth";
 
-const PROFILE = ["Profile", "Your fundraisers", "Donations", "Your impact", "Giving Fund", "Messages", "Settings"];
+const PROFILE = ["Your fundraisers"];
 
 export function SiteHeader() {
   const [mobile, setMobile] = useState(false);
