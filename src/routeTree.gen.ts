@@ -10,16 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LegalRouteImport } from './routes/legal'
+import { Route as MyFundraisersRouteImport } from './routes/my-fundraisers'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SigninRouteImport } from './routes/signin'
 import { Route as StartRouteImport } from './routes/start'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as FIdRouteImport } from './routes/f.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -32,9 +42,24 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyFundraisersRoute = MyFundraisersRouteImport.update({
+  id: '/my-fundraisers',
+  path: '/my-fundraisers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SigninRoute = SigninRouteImport.update({
@@ -47,6 +72,11 @@ const StartRoute = StartRouteImport.update({
   path: '/start',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FIdRoute = FIdRouteImport.update({
   id: '/f/$id',
   path: '/f/$id',
@@ -55,69 +85,104 @@ const FIdRoute = FIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/discover': typeof DiscoverRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/legal': typeof LegalRoute
+  '/my-fundraisers': typeof MyFundraisersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
   '/f/$id': typeof FIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/discover': typeof DiscoverRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/legal': typeof LegalRoute
+  '/my-fundraisers': typeof MyFundraisersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
   '/f/$id': typeof FIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cookies': typeof CookiesRoute
   '/discover': typeof DiscoverRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/legal': typeof LegalRoute
+  '/my-fundraisers': typeof MyFundraisersRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/signin': typeof SigninRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
   '/f/$id': typeof FIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cookies'
     | '/discover'
     | '/how-it-works'
+    | '/legal'
+    | '/my-fundraisers'
     | '/pricing'
+    | '/privacy'
     | '/signin'
     | '/start'
+    | '/terms'
     | '/f/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cookies'
     | '/discover'
     | '/how-it-works'
+    | '/legal'
+    | '/my-fundraisers'
     | '/pricing'
+    | '/privacy'
     | '/signin'
     | '/start'
+    | '/terms'
     | '/f/$id'
   id:
     | '__root__'
     | '/'
+    | '/cookies'
     | '/discover'
     | '/how-it-works'
+    | '/legal'
+    | '/my-fundraisers'
     | '/pricing'
+    | '/privacy'
     | '/signin'
     | '/start'
+    | '/terms'
     | '/f/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CookiesRoute: typeof CookiesRoute
   DiscoverRoute: typeof DiscoverRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  LegalRoute: typeof LegalRoute
+  MyFundraisersRoute: typeof MyFundraisersRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   SigninRoute: typeof SigninRoute
   StartRoute: typeof StartRoute
+  TermsRoute: typeof TermsRoute
   FIdRoute: typeof FIdRoute
 }
 
@@ -128,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -144,11 +216,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-fundraisers': {
+      id: '/my-fundraisers'
+      path: '/my-fundraisers'
+      fullPath: '/my-fundraisers'
+      preLoaderRoute: typeof MyFundraisersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signin': {
@@ -165,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/f/$id': {
       id: '/f/$id'
       path: '/f/$id'
@@ -177,11 +277,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CookiesRoute: CookiesRoute,
   DiscoverRoute: DiscoverRoute,
   HowItWorksRoute: HowItWorksRoute,
+  LegalRoute: LegalRoute,
+  MyFundraisersRoute: MyFundraisersRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   SigninRoute: SigninRoute,
   StartRoute: StartRoute,
+  TermsRoute: TermsRoute,
   FIdRoute: FIdRoute,
 }
 export const routeTree = rootRouteImport

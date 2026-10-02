@@ -5,7 +5,9 @@ import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import trust from "@/assets/trust.jpg";
-import { BLOG, CATEGORIES, FUNDRAISERS, TOPICS, type Fundraiser } from "@/lib/data";
+import { BLOG, CATEGORIES, TOPICS, type Fundraiser } from "@/lib/data";
+import { useQuery } from "@tanstack/react-query";
+import { allFundraisersQuery } from "@/lib/fundraisers";
 import { FundraiserCard } from "@/components/FundraiserCard";
 import { DonateModal } from "@/components/DonateModal";
 
@@ -36,7 +38,8 @@ function Home() {
   const [visible, setVisible] = useState(8);
   const [donate, setDonate] = useState<Fundraiser | null>(null);
   const [topic, setTopic] = useState(0);
-  const list = FUNDRAISERS.filter((f) => cat === "All" || f.category === cat);
+  const { data: all } = useQuery(allFundraisersQuery);
+  const list = all.filter((f) => cat === "All" || f.category === cat);
 
   return (
     <>

@@ -2,13 +2,14 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Facebook, Link2, MessageCircle, Share2 } from "lucide-react";
-import { FUNDRAISERS, money } from "@/lib/data";
+import { money } from "@/lib/data";
+import { fetchOne } from "@/lib/fundraisers";
 import { Progress } from "@/components/FundraiserCard";
 import { DonateModal } from "@/components/DonateModal";
 
 export const Route = createFileRoute("/f/$id")({
-  loader: ({ params }) => {
-    const f = FUNDRAISERS.find((x) => x.id === params.id);
+  loader: async ({ params }) => {
+    const f = await fetchOne(params.id);
     if (!f) throw notFound();
     return { f };
   },
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/f/$id")({
 });
 
 const DONORS = ["Anonymous", "Priya S.", "James O.", "The Carter family", "Anonymous", "Lena M."];
+const isMock = (id: string) => id.length < 10;
 
 function Detail() {
   const { f } = Route.useLoaderData();
@@ -51,7 +53,7 @@ function Detail() {
           <p className="mt-6 text-lg leading-relaxed">{f.story}</p>
         ) : (
           <ul className="mt-6 space-y-4">
-            <li className="rounded-2xl bg-secondary p-5"><p className="text-sm text-muted-foreground">3 days ago</p><p className="mt-1">We're over halfway there — thank you all so much!</p></li>
+            {isMock(f.id) && <li className="rounded-2xl bg-secondary p-5"><p className="text-sm text-muted-foreground">3 days ago</p><p className="mt-1">We're over halfway there — thank you all so much!</p></li>}
             <li className="rounded-2xl bg-secondary p-5"><p className="text-sm text-muted-foreground">2 weeks ago</p><p className="mt-1">Fundraiser launched. Please share with friends and family.</p></li>
           </ul>
         )}
@@ -74,7 +76,7 @@ function Detail() {
         </div>
         <h2 className="mt-6 flex items-center gap-2 font-bold"><Share2 className="h-4 w-4 text-primary" /> Recent donors</h2>
         <ul className="mt-3 space-y-3">
-          {DONORS.map((d, i) => (
+          {(isMock(f.id) ? DONORS : []).map((d, i) => (
             <li key={i} className="flex items-center gap-3 text-sm">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft font-bold text-primary-deep">{d[0]}</span>
               <span><span className="font-semibold">{d}</span><br /><span className="text-muted-foreground">{money([50, 20, 100, 250, 15, 40][i] ?? 0)}</span></span>
