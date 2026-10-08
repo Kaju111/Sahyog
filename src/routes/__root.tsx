@@ -17,6 +17,7 @@ import { AuthProvider } from "@/lib/auth";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CookieBanner } from "@/components/CookieBanner";
+import { ChatWidget } from "@/components/ChatWidget";
 
 function NotFoundComponent() {
   return (
@@ -130,6 +131,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
         <CookieBanner />
+        <ChatWidget />
         <Toaster position="top-center" richColors />
       </AuthProvider>
     </QueryClientProvider>
