@@ -74,10 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sahyog — Where successful fundraisers start" },
+      { title: "CauseUp — Where successful fundraisers start" },
       {
         name: "description",
-        content: "Start a free fundraiser on Sahyog and raise money for the causes you care about.",
+        content:
+          "Start a free fundraiser on CauseUp and raise money for the causes you care about.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

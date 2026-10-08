@@ -16,12 +16,12 @@ export const Route = createFileRoute("/f/$id")({
   head: ({ loaderData }) => {
     if (!loaderData)
       return {
-        meta: [{ title: "Fundraiser not found — Sahyog" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Fundraiser not found — CauseUp" }, { name: "robots", content: "noindex" }],
       };
     const { f } = loaderData;
     return {
       meta: [
-        { title: `${f.title} — Sahyog` },
+        { title: `${f.title} — CauseUp` },
         { name: "description", content: f.story.slice(0, 150) },
         { property: "og:title", content: f.title },
         { property: "og:description", content: f.story.slice(0, 150) },

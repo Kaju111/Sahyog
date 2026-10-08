@@ -94,7 +94,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-6 text-sm text-muted-foreground sm:px-6">
-          <span>© {new Date().getFullYear()} Sahyog</span>
+          <span>© {new Date().getFullYear()} CauseUp</span>
           <Link to="/terms" className="hover:text-foreground">
             Terms
           </Link>
@@ -109,7 +109,7 @@ export function SiteFooter() {
           </Link>
           <button
             onClick={() => {
-              localStorage.removeItem("Sahyog-cookies");
+              localStorage.removeItem("CauseUp-cookies");
               location.reload();
             }}
             className="hover:text-foreground"

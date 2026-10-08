@@ -3,12 +3,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How Sahyog works" },
+      { title: "How CauseUp works" },
       {
         name: "description",
-        content: "Create, share and receive funds — learn how fundraising on Sahyog works.",
+        content: "Create, share and receive funds — learn how fundraising on CauseUp works.",
       },
-      { property: "og:title", content: "How Sahyog works" },
+      { property: "og:title", content: "How CauseUp works" },
       {
         property: "og:description",
         content: "Create, share and receive funds in three simple steps.",
@@ -55,7 +55,7 @@ const FAQ = [
 function How() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-      <h1 className="text-4xl font-extrabold sm:text-5xl">How Sahyog works</h1>
+      <h1 className="text-4xl font-extrabold sm:text-5xl">How CauseUp works</h1>
       <ol className="mt-12 space-y-8 border-l-2 border-primary-soft pl-8">
         {STEPS.map(([t, d], i) => (
           <li key={t} className="relative">

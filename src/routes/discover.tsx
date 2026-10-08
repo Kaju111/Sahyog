@@ -11,9 +11,9 @@ export const Route = createFileRoute("/discover")({
   validateSearch: z.object({ q: z.string().optional(), category: z.string().optional() }),
   head: () => ({
     meta: [
-      { title: "Discover fundraisers — Sahyog" },
-      { name: "description", content: "Search and browse fundraisers by category on Sahyog." },
-      { property: "og:title", content: "Discover fundraisers — Sahyog" },
+      { title: "Discover fundraisers — CauseUp" },
+      { name: "description", content: "Search and browse fundraisers by category on CauseUp." },
+      { property: "og:title", content: "Discover fundraisers — CauseUp" },
       { property: "og:description", content: "Search and browse fundraisers by category." },
     ],
   }),

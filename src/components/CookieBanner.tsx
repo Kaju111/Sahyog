@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 export function CookieBanner() {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    if (!localStorage.getItem("Sahyog-cookies")) setShow(true);
+    if (!localStorage.getItem("CauseUp-cookies")) setShow(true);
   }, []);
   if (!show) return null;
   const choose = (v: string) => {
-    localStorage.setItem("Sahyog-cookies", v);
+    localStorage.setItem("CauseUp-cookies", v);
     setShow(false);
   };
   return (
@@ -18,7 +18,7 @@ export function CookieBanner() {
       className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-2xl rounded-2xl border bg-popover p-5 shadow-lift sm:flex sm:items-center sm:gap-4"
     >
       <p className="text-sm text-muted-foreground">
-        We use cookies to keep Sahyog working, understand usage and improve your experience.
+        We use cookies to keep CauseUp working, understand usage and improve your experience.
       </p>
       <div className="mt-3 flex shrink-0 gap-2 sm:mt-0">
         <button className="btn btn-outline !py-2" onClick={() => choose("essential")}>

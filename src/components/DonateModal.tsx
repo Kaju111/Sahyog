@@ -91,7 +91,7 @@ export function DonateModal({ f, onClose }: { f: Fundraiser | null; onClose: () 
           )}
         </button>
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          Demo only — payments are not yet connected. Protected by the Sahyog Giving Guarantee.
+          Demo only — payments are not yet connected. Protected by the CauseUp Giving Guarantee.
         </p>
       </div>
     </div>

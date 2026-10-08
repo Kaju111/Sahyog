@@ -3,12 +3,12 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
-      { title: "Cookie Policy — Sahyog" },
-      { name: "description", content: "How Sahyog uses cookies and how you can manage them." },
-      { property: "og:title", content: "Cookie Policy — Sahyog" },
+      { title: "Cookie Policy — CauseUp" },
+      { name: "description", content: "How CauseUp uses cookies and how you can manage them." },
+      { property: "og:title", content: "Cookie Policy — CauseUp" },
       {
         property: "og:description",
-        content: "How Sahyog uses cookies and how you can manage them.",
+        content: "How CauseUp uses cookies and how you can manage them.",
       },
     ],
   }),
@@ -20,7 +20,7 @@ function CookiesPage() {
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       <h1 className="text-4xl font-extrabold">Cookie Policy</h1>
       <p className="mt-3 text-muted-foreground">
-        How Sahyog uses cookies and how you can manage them.
+        How CauseUp uses cookies and how you can manage them.
       </p>
       <div className="mt-10 space-y-8">
         <section>

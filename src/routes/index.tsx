@@ -22,13 +22,13 @@ import { DonateModal } from "@/components/DonateModal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sahyog — Where successful fundraisers start" },
+      { title: "CauseUp — Where successful fundraisers start" },
       {
         name: "description",
         content:
           "Start a fundraiser in minutes with no fee to start. Discover medical, memorial, education and community fundraisers.",
       },
-      { property: "og:title", content: "Sahyog — Where successful fundraisers start" },
+      { property: "og:title", content: "CauseUp — Where successful fundraisers start" },
       {
         property: "og:description",
         content: "Start a fundraiser in minutes with no fee to start.",
@@ -146,7 +146,7 @@ function Home() {
       {/* HOW IT WORKS */}
       <Section className="py-20">
         <h2 className="text-3xl font-extrabold sm:text-4xl">
-          Fundraising on Sahyog is easy, powerful and trusted
+          Fundraising on CauseUp is easy, powerful and trusted
         </h2>
         <ol className="mt-10 grid gap-6 md:grid-cols-3">
           {STEPS.map((s, i) => (
@@ -259,7 +259,7 @@ function Home() {
       <Section className="grid items-center gap-12 py-20 md:grid-cols-2">
         <img
           src={trust}
-          alt="Sahyog Trust & Safety team member helping a fundraiser"
+          alt="CauseUp Trust & Safety team member helping a fundraiser"
           loading="lazy"
           width={1024}
           height={768}

@@ -10,12 +10,12 @@ import { CATEGORIES } from "@/lib/data";
 export const Route = createFileRoute("/start")({
   head: () => ({
     meta: [
-      { title: "Start a fundraiser — Sahyog" },
+      { title: "Start a fundraiser — CauseUp" },
       {
         name: "description",
         content: "Create your fundraiser in a few simple steps. No fee to start.",
       },
-      { property: "og:title", content: "Start a fundraiser — Sahyog" },
+      { property: "og:title", content: "Start a fundraiser — CauseUp" },
       { property: "og:description", content: "Create your fundraiser in a few simple steps." },
     ],
   }),

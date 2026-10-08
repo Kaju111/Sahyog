@@ -7,12 +7,12 @@ import { FundraiserCard } from "@/components/FundraiserCard";
 export const Route = createFileRoute("/my-fundraisers")({
   head: () => ({
     meta: [
-      { title: "Your fundraisers — Sahyog" },
+      { title: "Your fundraisers — CauseUp" },
       {
         name: "description",
-        content: "See and manage the fundraisers you have started on Sahyog.",
+        content: "See and manage the fundraisers you have started on CauseUp.",
       },
-      { property: "og:title", content: "Your fundraisers — Sahyog" },
+      { property: "og:title", content: "Your fundraisers — CauseUp" },
       { property: "og:description", content: "See and manage the fundraisers you have started." },
     ],
   }),

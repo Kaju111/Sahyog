@@ -13,10 +13,10 @@ function getReply(message: string) {
     return "To support a fundraiser, open its page and select Donate. You can review the donation details before completing your contribution.";
   }
   if (text.includes("account") || text.includes("sign in") || text.includes("login")) {
-    return "You can sign in from the top-right menu. If you are new to Sahyog, you can create an account from the same page.";
+    return "You can sign in from the top-right menu. If you are new to CauseUp, you can create an account from the same page.";
   }
   if (text.includes("fee") || text.includes("pricing") || text.includes("cost")) {
-    return "Sahyog's pricing details are on the Pricing page. You can review any applicable platform fees there before getting started.";
+    return "CauseUp's pricing details are on the Pricing page. You can review any applicable platform fees there before getting started.";
   }
 
   return "I can help with starting a fundraiser, making a donation, account access, or pricing. What would you like to know?";
@@ -51,7 +51,7 @@ export function ChatWidget() {
     <div className="fixed bottom-5 right-5 z-55 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {open && (
         <section
-          aria-label="Sahyog support chat"
+          aria-label="CauseUp support chat"
           className="flex h-[min(32rem,calc(100dvh-7rem))] w-[min(24rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-border bg-popover shadow-lift"
           role="dialog"
           aria-modal="false"
@@ -62,7 +62,7 @@ export function ChatWidget() {
                 <Bot size={20} aria-hidden="true" />
               </span>
               <div>
-                <h2 className="text-sm font-semibold">Sahyog Support</h2>
+                <h2 className="text-sm font-semibold">CauseUp Support</h2>
                 <p className="text-xs text-white/80">Here to help</p>
               </div>
             </div>

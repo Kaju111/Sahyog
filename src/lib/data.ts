@@ -1,4 +1,4 @@
-// Mock data for the Sahyog front-end. Replace with API calls later.
+// Mock data for the CauseUp front-end. Replace with API calls later.
 import medical from "@/assets/f-medical.jpg";
 import animals from "@/assets/f-animals.jpg";
 import education from "@/assets/f-education.jpg";
@@ -6,7 +6,7 @@ import community from "@/assets/f-community.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 
-export const BRAND = "Sahyog";
+export const BRAND = "CauseUp";
 
 export const CATEGORIES = [
   "Medical",
@@ -136,14 +136,14 @@ export const MENUS: { label: string; items: MenuItem[] }[] = [
       },
       { title: "Fundraising ideas", desc: "Creative ways to get started", to: "/how-it-works" },
       { title: "Charity fundraising", desc: "Raise money for a registered charity", to: "/start" },
-      { title: "Sign up as a charity", desc: "Accept donations on Sahyog", to: "/signin" },
+      { title: "Sign up as a charity", desc: "Accept donations on CauseUp", to: "/signin" },
     ],
   },
   {
     label: "About",
     items: [
       {
-        title: "How Sahyog works",
+        title: "How CauseUp works",
         desc: "The simple path from idea to impact",
         to: "/how-it-works",
       },

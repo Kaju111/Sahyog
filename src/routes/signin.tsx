@@ -10,12 +10,12 @@ import { Logo } from "@/components/Logo";
 export const Route = createFileRoute("/signin")({
   head: () => ({
     meta: [
-      { title: "Sign in or sign up — Sahyog" },
+      { title: "Sign in or sign up — CauseUp" },
       {
         name: "description",
-        content: "Sign in to manage your fundraisers and donations on Sahyog.",
+        content: "Sign in to manage your fundraisers and donations on CauseUp.",
       },
-      { property: "og:title", content: "Sign in — Sahyog" },
+      { property: "og:title", content: "Sign in — CauseUp" },
       { property: "og:description", content: "Sign in to manage your fundraisers and donations." },
     ],
   }),
@@ -73,7 +73,7 @@ function SignIn() {
       <div className="rounded-3xl border bg-card p-8 shadow-lift">
         <Logo />
         <h1 className="mt-6 text-2xl font-extrabold">
-          {mode === "in" ? "Sign in to Sahyog" : "Create your account"}
+          {mode === "in" ? "Sign in to CauseUp" : "Create your account"}
         </h1>
         {sent ? (
           <p className="mt-6 rounded-2xl bg-primary-soft p-4 text-sm">
@@ -128,7 +128,7 @@ function SignIn() {
           </>
         )}
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          {mode === "in" ? "New to Sahyog?" : "Already have an account?"}{" "}
+          {mode === "in" ? "New to CauseUp?" : "Already have an account?"}{" "}
           <button
             className="font-semibold text-primary"
             onClick={() => {
